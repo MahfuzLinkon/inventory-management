@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -56,8 +57,8 @@ class SupplierController extends Controller
                 'description' => $request->description,
                 'created_by' => empty($id) ? Auth::user()->id : DB::table('suppliers')->find($id)->created_by,
                 'updated_by' => isset($id) ? Auth::user()->name : null,
-                "created_at" =>  \Carbon\Carbon::now(), 
-                "updated_at" => isset($id) ? \Carbon\Carbon::now() : null,  
+                "created_at" =>  Carbon::now(), 
+                "updated_at" => isset($id) ? Carbon::now() : null,  
             ]);
             if(empty($id)){
                 return redirect()->back()->with('success', 'Supplier Added Successfully');
@@ -115,6 +116,17 @@ class SupplierController extends Controller
         return redirect()->back()->with('success', 'Supplier Deleted Successfully');
     }
 
+    public function supplierStatus($id){
+        $supplier = DB::table('suppliers')->where('id', $id)->first();
+        if($supplier->status == 1){
+            DB::table('suppliers')->where('id', $id)->update(['status' => 0]);
+            $message = 'Supplier Deactivate successfully';
+        }elseif($supplier->status == 0){
+            DB::table('suppliers')->where('id', $id)->update(['status' => 1]);
+            $message = 'Supplier Activate successfully';
+        }
+        return redirect()->back()->with('success', $message);
+    }
 
 
 }

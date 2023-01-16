@@ -41,6 +41,7 @@
                                     <td>{{ $supplier->updated_by }}</td>
                                     <td>{{ $supplier->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>
+                                        <a href="{{ route('suppliers.status', ['id'=>$supplier->id]) }}" class="btn btn-{{ $supplier->status == 1 ? 'warning' : 'success' }}"><i class="gd-arrow-{{ $supplier->status == 1 ? 'down' : 'up' }}"></i></a>
                                         <a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-info"><i class="gd-pencil-alt"></i></a>
                                         {{-- <a href="" class="btn btn-danger"><i class="gd-trash"></i></a> --}}
                                         <form action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST" onsubmit="return confirm('Are sure want to delete this ?')" style="display: inline-block">

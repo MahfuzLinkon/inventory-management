@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //supplier all route
     Route::resource('suppliers', SupplierController::class)->except(['store', 'update']);
     Route::post('/suppliers/update-insert/{id?}', [SupplierController::class, 'updateOrInsert'])->name('suppliers.update-insert');
+    Route::get('/suppliers/status/{id}', [SupplierController::class, 'supplierStatus'])->name('suppliers.status');
 });
 
 
