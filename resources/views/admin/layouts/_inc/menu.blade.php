@@ -111,13 +111,36 @@
             <!-- Pages: subPages -->
             <ul id="units" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('customers.index') }}">Manage Units</a>
+                    <a class="side-nav-menu-link" href="{{ route('units.index') }}">Manage Units</a>
                 </li>
             </ul>
             <!-- End Pages: subPages -->
         </li>
         <!-- End Units -->
         
+        <!-- Category -->
+        <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#"
+               data-target="#category">
+          <span class="side-nav-menu-icon d-flex mr-3">
+            <i class="gd-server"></i>
+          </span>
+                <span class="side-nav-fadeout-on-closed media-body">Category</span>
+                <span class="side-nav-control-icon d-flex">
+            <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+          </span>
+                <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+
+            <!-- Pages: subPages -->
+            <ul id="category" class="side-nav-menu side-nav-menu-second-level mb-0">
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('categories.index') }}">Manage Category</a>
+                </li>
+            </ul>
+            <!-- End Pages: subPages -->
+        </li>
+        <!-- End Category -->
 
 
     </ul>

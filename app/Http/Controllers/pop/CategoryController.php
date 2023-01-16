@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\pop;
 
 use App\Http\Controllers\Controller;
-use App\Models\Unit;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
-class UnitController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        return view('pop.unit.index', [
-            'units' => Unit::latest()->get(),
+        return view('pop.category.index',[
+            'categories' => Category::latest()->get(),
         ]);
     }
 
@@ -27,7 +28,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        return view('pop.unit.create');
+        return view('pop.category.create');
     }
 
     /**
@@ -39,10 +40,10 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' =>'required',
         ]);
-        Unit::unitUpdateOrCreate($request);
-        return redirect()->back()->with('success', 'New Unit Created');
+        Category::categoryUpdateOrCreate($request);
+        return redirect()->back()->with('success', 'Category Created Successfully');
     }
 
     /**
@@ -64,8 +65,8 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        return view('pop.unit.edit', [
-            'unit' => Unit::where('id', $id)->first(),
+        return view('pop.category.edit',[
+            'category' => Category::where('id', $id)->first(),
         ]);
     }
 
@@ -78,11 +79,8 @@ class UnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-        Unit::unitUpdateOrCreate($request, $id);
-        return redirect()->route('units.index')->with('success', 'Unit Updated Successfully');
+        Category::categoryUpdateOrCreate($request, $id);
+        return redirect()->route('categories.index')->with('success', 'Category Updated Successfully');
     }
 
     /**
@@ -93,21 +91,22 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        Unit::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'Unit Deleted Successfully');
+        Category::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Category Deleted Successfully');
     }
 
-    public function unitsStatus($id){
-        $unit = Unit::where('id', $id)->first();
-        if($unit->status == 1){
-            $unit->status = 0;
-            $message = 'Unit Status Deactivate Successfully';
+    public function categoriesStatus($id){
+        $category = Category::where('id', $id)->first();
+        if($category->status == 1){
+            $category->status = 0;
+            $message = 'Category Status Deactivate Successfully';
         }else{
-            $unit->status = 1;
-            $message = 'Unit Status Activate Successfully'; 
+            $category->status = 1;
+            $message = 'Category Status Activate Successfully'; 
         }
-        $unit->save();
+        $category->save();
         return redirect()->back()->with('success', $message);
     }
+
 
 }
