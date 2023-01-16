@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->tinyInteger('created_by')->nullable();
-            $table->string('updated_by')->nullable();
+            $table->tinyInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

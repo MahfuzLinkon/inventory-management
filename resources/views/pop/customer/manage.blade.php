@@ -41,8 +41,8 @@
                                         <img src="{{ asset($customer->image) }}" alt="" style="height: 80px; width:80px;">
                                     </td>
                                     <td>{{ $customer->description }}</td>
-                                    <td>{{ $customer->created_by }}</td>
-                                    <td>{{ $customer->updated_by }}</td>
+                                    <td>{{ $customer->createdBy->name }}</td>
+                                    <td>{{ $customer->updatedBy->name }}</td>
                                     <td>{{ $customer->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>
                                         <a href="{{ route('customers.status', ['id'=>$customer->id]) }}" class="btn btn-{{ $customer->status == 1 ? 'warning' : 'success' }}"><i class="gd-arrow-{{ $customer->status == 1 ? 'down' : 'up' }}"></i></a>

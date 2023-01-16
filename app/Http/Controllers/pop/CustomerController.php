@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pop;
 
 use App\helper\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +20,11 @@ class CustomerController extends Controller
     public function index()
     {
         return view('pop.customer.manage', [
-            'customers' => DB::table('customers')->orderBy('id', 'DESC')
-            ->join('users', 'users.id', '=', 'customers.created_by')
-            ->select('customers.*', 'users.name as created_by')
-            ->get(),
+            'customers' => Customer::latest()->get(),
+            // 'customers' => DB::table('customers')->orderBy('id', 'DESC')
+            // ->join('users', 'users.id', '=', 'customers.created_by')
+            // ->select('customers.*', 'users.name as created_by')
+            // ->get(),
         ]);
     }
 
@@ -60,7 +62,7 @@ class CustomerController extends Controller
             'image' => Helper::imageUploader($request->image, 'customers', isset($id) ? DB::table('customers')->find($id)->image : null, 600, 600),
             'description' => $request->description,
             'created_by' => empty($id) ? Auth::user()->id : DB::table('customers')->find($id)->created_by,
-            'updated_by' => isset($id) ? Auth::user()->name : null,
+            'updated_by' => isset($id) ? Auth::user()->id : null,
             'created_at' => Carbon::now(),
             'updated_at' => isset($id) ? Carbon::now() : null,
 

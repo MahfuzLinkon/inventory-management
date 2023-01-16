@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +21,12 @@ class SupplierController extends Controller
 
         
         return view('admin.supplier.manage', [
-            'suppliers' => DB::table('suppliers')->orderBy('id', 'DESC')
-            ->join('users', 'suppliers.created_by', '=', 'users.id')
-            ->select('suppliers.*', 'users.name as created_by')
-            ->get(),
+            'suppliers' => Supplier::latest()->get(),
+
+            // 'suppliers' => DB::table('suppliers')->orderBy('id', 'DESC')
+            // ->join('users', 'suppliers.created_by', '=', 'users.id')
+            // ->select('suppliers.*', 'users.name as created_by')
+            // ->get(),
         ]);
     }
 
@@ -56,7 +59,7 @@ class SupplierController extends Controller
                 'email' => $request->email,
                 'description' => $request->description,
                 'created_by' => empty($id) ? Auth::user()->id : DB::table('suppliers')->find($id)->created_by,
-                'updated_by' => isset($id) ? Auth::user()->name : null,
+                'updated_by' => isset($id) ? Auth::user()->id : null,
                 "created_at" =>  Carbon::now(), 
                 "updated_at" => isset($id) ? Carbon::now() : null,  
             ]);

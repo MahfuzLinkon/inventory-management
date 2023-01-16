@@ -37,8 +37,8 @@
                                     <td>{{ $supplier->phone }}</td>
                                     <td>{{ $supplier->email }}</td>
                                     <td>{{ $supplier->description }}</td>
-                                    <td>{{ $supplier->created_by }}</td>
-                                    <td>{{ $supplier->updated_by }}</td>
+                                    <td>{{ $supplier->createdBy->name }}</td>
+                                    <td>{{ $supplier->updatedBy->name }}</td>
                                     <td>{{ $supplier->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>
                                         <a href="{{ route('suppliers.status', ['id'=>$supplier->id]) }}" class="btn btn-{{ $supplier->status == 1 ? 'warning' : 'success' }}"><i class="gd-arrow-{{ $supplier->status == 1 ? 'down' : 'up' }}"></i></a>
