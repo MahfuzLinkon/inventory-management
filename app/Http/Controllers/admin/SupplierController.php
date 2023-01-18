@@ -19,7 +19,7 @@ class SupplierController extends Controller
     public function index()
     {
 
-        
+
         return view('admin.supplier.manage', [
             'suppliers' => Supplier::latest()->get(),
 
@@ -52,20 +52,26 @@ class SupplierController extends Controller
     // }
 
     public function updateOrInsert(Request $request, $id = null){
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+        ]);
         DB::table('suppliers')
             ->updateOrInsert(['id' => $id], [
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'email' => $request->email,
-                'description' => $request->description,
+                'address' => $request->address,
                 'created_by' => empty($id) ? Auth::user()->id : DB::table('suppliers')->find($id)->created_by,
                 'updated_by' => isset($id) ? Auth::user()->id : null,
-                "created_at" =>  Carbon::now(), 
-                "updated_at" => isset($id) ? Carbon::now() : null,  
+                "created_at" =>  Carbon::now(),
+                "updated_at" => isset($id) ? Carbon::now() : null,
             ]);
             if(empty($id)){
                 return redirect()->back()->with('success', 'Supplier Added Successfully');
-                
+
             }else{
                 return redirect()->route('suppliers.index')->with('success', 'Supplier Updated Successfully');
             }
@@ -79,7 +85,7 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**

@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\pop\CategoryController;
 use App\Http\Controllers\pop\CustomerController;
+use App\Http\Controllers\pop\ProductController;
 use App\Http\Controllers\pop\UnitController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::resource('suppliers', SupplierController::class)->except(['store', 'update']);
     Route::post('/suppliers/update-insert/{id?}', [SupplierController::class, 'updateOrInsert'])->name('suppliers.update-insert');
     Route::get('/suppliers/status/{id}', [SupplierController::class, 'supplierStatus'])->name('suppliers.status');
-    // Customer all route 
+    // Customer all route
     Route::resource('customers', CustomerController::class)->except(['store', 'update']);
     Route::post('/customers/update-insert/{id?}', [CustomerController::class, 'updateOrInsert'])->name('customers.update-insert');
     Route::get('/customers/status/{id}', [CustomerController::class, 'customerStatus'])->name('customers.status');
@@ -38,8 +39,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
     // Category all route
     Route::resource('categories', CategoryController::class);
     Route::get('/categories/status/{id}', [CategoryController::class, 'categoriesStatus'])->name('categories.status');
-
-    
+    // Product all route
+    Route::resource('products', ProductController::class);
+    Route::get('/products/status/{id}', [ProductController::class, 'productsStatus'])->name('products.status');
 });
 
 
@@ -49,7 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
 
 
- // default profile route 
+ // default profile route
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

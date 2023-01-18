@@ -60,7 +60,7 @@ class CustomerController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'image' => Helper::imageUploader($request->image, 'customers', isset($id) ? DB::table('customers')->find($id)->image : null, 600, 600),
-            'description' => $request->description,
+            'address' => $request->address,
             'created_by' => empty($id) ? Auth::user()->id : DB::table('customers')->find($id)->created_by,
             'updated_by' => isset($id) ? Auth::user()->id : null,
             'created_at' => Carbon::now(),

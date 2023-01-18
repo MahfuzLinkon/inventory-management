@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    Edit Supplier
+@endsection
 @section('content')
     <div class="py-4 px-3 px-md-4">
 
@@ -21,24 +23,44 @@
                             <label for="" class="col-md-3">Name</label>
                             <div class="col-md-9">
                                 <input type="text" value="{{ $supplier->name }}" name="name" class="form-control">
+                                <div class="mt-2">
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                        </div>
                        <div class="row mt-3">
                             <label for="" class="col-md-3">Phone Number</label>
                             <div class="col-md-9">
                                 <input type="text" name="phone" value="{{ $supplier->phone }}" class="form-control">
+                                <div class="mt-2">
+                                    @error('phone')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <label for="" class="col-md-3">Email</label>
                             <div class="col-md-9">
                                 <input type="email" name="email" value="{{ $supplier->email }}" class="form-control">
+                                <div class="mt-2">
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <label for="" class="col-md-3">Description</label>
+                            <label for="" class="col-md-3">Address</label>
                             <div class="col-md-9">
-                                <textarea name="description" id="" cols="30" rows="3"  class="form-control">{{ $supplier->description }}</textarea>
+                                <textarea name="address" id="" cols="30" rows="3"  class="form-control">{{ $supplier->description }}</textarea>
+                                <div class="mt-2">
+                                    @error('address')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -52,7 +74,7 @@
                 </div>
             </div>
         </div>
-  
+
 
 
     </div>

@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    Manage Category
+@endsection
 @section('content')
     <div class="py-4 px-3 px-md-4">
 
@@ -32,7 +34,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->createdBy->name }}</td>
-                                    <td>{{ isset($category->updatedBy->name) ? $category->updatedBy->name : '' }}</td>
+                                    <td>{{ isset($category->updatedBy->name) ? $category->updatedBy->name : 'Not updated' }}</td>
                                     <td>{{ $category->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>
                                         <a href="{{ route('categories.status', ['id'=>$category->id]) }}" class="btn btn-{{ $category->status == 1 ? 'warning' : 'success' }}"><i class="gd-arrow-{{ $category->status == 1 ? 'down' : 'up' }}"></i></a>
@@ -52,7 +54,7 @@
                 </div>
             </div>
         </div>
-  
+
 
 
     </div>

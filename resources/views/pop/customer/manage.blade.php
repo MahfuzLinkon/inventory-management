@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    Manage Customer
+@endsection
 @section('content')
     <div class="py-4 px-3 px-md-4">
 
@@ -23,7 +25,7 @@
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>image</th>
-                                    <th>Description</th>
+                                    <th>Address</th>
                                     <th>Created By</th>
                                     <th>Updated By</th>
                                     <th>Status</th>
@@ -42,7 +44,7 @@
                                     </td>
                                     <td>{{ $customer->description }}</td>
                                     <td>{{ $customer->createdBy->name }}</td>
-                                    <td>{{ $customer->updatedBy->name }}</td>
+                                    <td>{{ isset($customer->updatedBy) ? $customer->updatedBy->name : 'Not Updated' }}</td>
                                     <td>{{ $customer->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>
                                         <a href="{{ route('customers.status', ['id'=>$customer->id]) }}" class="btn btn-{{ $customer->status == 1 ? 'warning' : 'success' }}"><i class="gd-arrow-{{ $customer->status == 1 ? 'down' : 'up' }}"></i></a>
@@ -62,7 +64,7 @@
                 </div>
             </div>
         </div>
-  
+
 
 
     </div>

@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    Create Customer
+@endsection
 @section('content')
     <div class="py-4 px-3 px-md-4">
 
@@ -57,9 +59,9 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <label for="" class="col-md-3">Description</label>
+                            <label for="" class="col-md-3">Address</label>
                             <div class="col-md-9">
-                                <textarea name="description" id="" cols="30" rows="3"  class="form-control"></textarea>
+                                <textarea name="address" id="" cols="30" rows="3"  class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -73,7 +75,7 @@
                 </div>
             </div>
         </div>
-  
+
 
 
     </div>

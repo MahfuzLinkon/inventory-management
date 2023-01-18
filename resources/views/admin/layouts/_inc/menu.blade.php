@@ -5,7 +5,7 @@
         <!-- End Title -->
 
         <!-- Dashboard -->
-        <li class="side-nav-menu-item active">
+        <li class="side-nav-menu-item">
             <a class="side-nav-menu-link media align-items-center" href="{{ route('dashboard') }}">
           <span class="side-nav-menu-icon d-flex mr-3">
             <i class="gd-dashboard"></i>
@@ -63,7 +63,10 @@
             <!-- Pages: subPages -->
             <ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('suppliers.index') }}">Manage Suppliers</a>
+                    <a class="side-nav-menu-link" href="{{ route('suppliers.index') }}">All Suppliers</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('suppliers.create') }}">Add New Suppliers</a>
                 </li>
             </ul>
             <!-- End Pages: subPages -->
@@ -87,7 +90,10 @@
             <!-- Pages: subPages -->
             <ul id="customers" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('customers.index') }}">Manage Customers</a>
+                    <a class="side-nav-menu-link" href="{{ route('customers.index') }}">All Customers</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('customers.create') }}">Add New Customers</a>
                 </li>
             </ul>
             <!-- End Pages: subPages -->
@@ -111,13 +117,16 @@
             <!-- Pages: subPages -->
             <ul id="units" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('units.index') }}">Manage Units</a>
+                    <a class="side-nav-menu-link" href="{{ route('units.index') }}">All Units</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('units.create') }}">Add New Units</a>
                 </li>
             </ul>
             <!-- End Pages: subPages -->
         </li>
         <!-- End Units -->
-        
+
         <!-- Category -->
         <li class="side-nav-menu-item side-nav-has-menu">
             <a class="side-nav-menu-link media align-items-center" href="#"
@@ -135,12 +144,42 @@
             <!-- Pages: subPages -->
             <ul id="category" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('categories.index') }}">Manage Category</a>
+                    <a class="side-nav-menu-link" href="{{ route('categories.index') }}">All Category</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('categories.create') }}">Add New Category</a>
                 </li>
             </ul>
             <!-- End Pages: subPages -->
         </li>
         <!-- End Category -->
+
+
+
+        <!-- Products -->
+        <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#"
+               data-target="#product">
+              <span class="side-nav-menu-icon d-flex mr-3">
+                <i class="gd-shopping-cart-full"></i>
+              </span>
+                <span class="side-nav-fadeout-on-closed media-body">Products</span>
+                <span class="side-nav-control-icon d-flex">
+            <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+          </span>
+                <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+
+            <ul id="product" class="side-nav-menu side-nav-menu-second-level mb-0">
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('products.index') }}">All Product</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('products.create') }}">Add New Product</a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Products -->
 
 
     </ul>

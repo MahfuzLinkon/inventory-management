@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    Manage Supplier
+@endsection
 @section('content')
     <div class="py-4 px-3 px-md-4">
 
@@ -22,9 +24,9 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Email</th>
-                                    <th>Description</th>
+                                    <th>Address</th>
                                     <th>Created By</th>
-                                    <th>Updated By</th>
+                                    <th>Updated By</th> 
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -36,9 +38,9 @@
                                     <td>{{ $supplier->name }}</td>
                                     <td>{{ $supplier->phone }}</td>
                                     <td>{{ $supplier->email }}</td>
-                                    <td>{{ $supplier->description }}</td>
+                                    <td>{{ $supplier->address }}</td>
                                     <td>{{ $supplier->createdBy->name }}</td>
-                                    <td>{{ $supplier->updatedBy->name }}</td>
+                                    <td>{{ isset($supplier->updatedBy) ? $supplier->updatedBy->name : 'Not updated' }}</td>
                                     <td>{{ $supplier->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>
                                         <a href="{{ route('suppliers.status', ['id'=>$supplier->id]) }}" class="btn btn-{{ $supplier->status == 1 ? 'warning' : 'success' }}"><i class="gd-arrow-{{ $supplier->status == 1 ? 'down' : 'up' }}"></i></a>
@@ -58,7 +60,7 @@
                 </div>
             </div>
         </div>
-  
+
 
 
     </div>

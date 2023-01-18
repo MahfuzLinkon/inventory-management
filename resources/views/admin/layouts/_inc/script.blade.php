@@ -1,6 +1,17 @@
 <script src="{{ asset('/') }}assets/public/graindashboard/js/graindashboard.js"></script>
 <script src="{{ asset('/') }}assets/public/graindashboard/js/graindashboard.vendor.js"></script>
 <script src="{{ asset('/') }}assets/public/graindashboard/js/toastr.min.js"></script>
+<script src="{{ asset('/') }}assets/public/graindashboard/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.selectJs').select2();
+    });
+</script>
+
+<script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'editor' );
+</script>
 
 <!-- DEMO CHARTS -->
 <script src="{{ asset('/') }}assets/public/demo/resizeSensor.js"></script>
@@ -26,3 +37,4 @@
     </script>
     {{ Session::forget('erros') }}
 @endif
+@yield('script')
