@@ -154,8 +154,6 @@
         </li>
         <!-- End Category -->
 
-
-
         <!-- Products -->
         <li class="side-nav-menu-item side-nav-has-menu">
             <a class="side-nav-menu-link media align-items-center" href="#"
@@ -180,6 +178,31 @@
             </ul>
         </li>
         <!-- End Products -->
+
+        <!-- Purchase Products  -->
+        <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#"
+               data-target="#purchase">
+              <span class="side-nav-menu-icon d-flex mr-3">
+                <i class="gd-ticket"></i>
+              </span>
+                <span class="side-nav-fadeout-on-closed media-body">Purchase Products</span>
+                <span class="side-nav-control-icon d-flex">
+            <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+          </span>
+                <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+
+            <ul id="purchase" class="side-nav-menu side-nav-menu-second-level mb-0">
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchases.index') }}">Manage Purchase</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchases.create') }}">Purchase New </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Purchase Products  -->
 
 
     </ul>

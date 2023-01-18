@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\pop\CategoryController;
 use App\Http\Controllers\pop\CustomerController;
 use App\Http\Controllers\pop\ProductController;
+use App\Http\Controllers\pop\PurchaseController;
 use App\Http\Controllers\pop\UnitController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,9 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::prefix('admin')->group(function(){
+    Route::prefix('admin')->group(function () {
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('admin.profile');
     });
     //supplier all route
@@ -42,6 +43,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     // Product all route
     Route::resource('products', ProductController::class);
     Route::get('/products/status/{id}', [ProductController::class, 'productsStatus'])->name('products.status');
+    //Purchase All Route
+    Route::resource('purchases', PurchaseController::class);
+    Route::post('/get-supplier-wise/category', [PurchaseController::class, 'getCategory'])->name('get.category');
+    Route::post('/get-category-wise/product', [PurchaseController::class, 'getProduct'])->name('get.product');
 });
 
 
@@ -51,11 +56,11 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
 
 
- // default profile route
+// default profile route
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
