@@ -32,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('pop.product.create',[
+        return view('pop.product.create', [
             'categories' => Category::where('status', 1)->orderBy('name', 'ASC')->get(),
             'units' => Unit::where('status', 1)->orderBy('name', 'ASC')->get(),
             'suppliers' => Supplier::where('status', 1)->orderBy('name', 'ASC')->get(),
@@ -52,7 +52,7 @@ class ProductController extends Controller
             'unit_id' => 'required',
             'category_id' => 'required',
             'supplier_id' => 'required',
-        ],[
+        ], [
             'unit_id.required' => 'Product unit is required.',
             'category_id.required' => 'Product category is required.',
             'supplier_id.required' => 'Product Supplier is required.',
@@ -82,12 +82,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('pop.product.edit',[
-            'product' => Product::where('id' , $id)->first(),
+        return view('pop.product.edit', [
+            'product' => Product::where('id', $id)->first(),
             'categories' => Category::where('status', 1)->orderBy('name', 'ASC')->get(),
             'units' => Unit::where('status', 1)->orderBy('name', 'ASC')->get(),
             'suppliers' => Supplier::where('status', 1)->orderBy('name', 'ASC')->get(),
-
+            'productSuppliers' => ProductSupplier::where('product_id', $id)->get(),
         ]);
     }
 
@@ -101,6 +101,9 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         Product::productUpdateOrCreate($request, $id);
+
+        ProductSupplier::where('product_id', $id)->delete();
+        ProductSupplier::productSupplierUpdateOrCreate($request, $id);
         return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 
@@ -113,15 +116,17 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::where('id', $id)->delete();
+        ProductSupplier::where('product_id', $id)->delete();
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
 
-    public function productsStatus($id){
+    public function productsStatus($id)
+    {
         $product = Product::where('id', $id)->first();
-        if($product->status == 1){
+        if ($product->status == 1) {
             $product->status = 0;
             $message = 'Product Deactivate Successfully';
-        }else{
+        } else {
             $product->status = 1;
             $message = 'Product Activate Successfully';
         }

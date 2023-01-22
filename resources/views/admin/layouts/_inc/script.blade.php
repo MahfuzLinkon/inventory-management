@@ -2,6 +2,9 @@
 <script src="{{ asset('/') }}assets/public/graindashboard/js/graindashboard.vendor.js"></script>
 <script src="{{ asset('/') }}assets/public/graindashboard/js/toastr.min.js"></script>
 <script src="{{ asset('/') }}assets/public/graindashboard/js/select2.min.js"></script>
+<script src="{{ asset('/') }}assets/public/graindashboard/js/all.js"></script>
+<script src="{{ asset('/') }}assets/public/graindashboard/js/handlebars.min-v4.7.7.js"></script>
+<script src="{{ asset('/') }}assets/public/graindashboard/js/notify.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.selectJs').select2();

@@ -32,6 +32,29 @@
                             </div>
                        </div>
                        <div class="row mt-3">
+                            <label for="" class="col-md-3">Product Supplier</label>
+                            <div class="col-md-9">
+                                <select name="supplier_id[]" id="" class="selectJs form-control" data-placeholder="Select Product Supplier" multiple>
+                                    <option></option>
+                                    @foreach ($suppliers as $supplier)
+                                    <option value="{{ $supplier->id }}"
+                                        @foreach ($productSuppliers as $productSupplier)
+                                            @if ($supplier->id == $productSupplier->supplier_id)
+                                            {{ 'selected' }}
+                                            @endif
+                                        @endforeach
+                                        >
+                                        {{ $supplier->name }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="mt-2">
+                                    @error('supplier_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                       <div class="row mt-3">
                             <label for="" class="col-md-3">Product Category</label>
                             <div class="col-md-9">
                                 <select name="category_id" id="" class="selectJs form-control" data-placeholder="Select Product Category">

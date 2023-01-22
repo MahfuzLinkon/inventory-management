@@ -8,26 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSupplier extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $fillable = [
         'product_id',
         'supplier_id',
     ];
 
-    public static function productSupplierUpdateOrCreate($request, $productId, $id =null){
+    public static function productSupplierUpdateOrCreate($request, $productId)
+    {
         $suppliers = $request->supplier_id;
-        foreach($suppliers as $supplier){
-            ProductSupplier::updateOrCreate(['id'=> $id], [
+        foreach ($suppliers as $supplier) {
+            ProductSupplier::Create([
                 'supplier_id' => $supplier,
                 'product_id' => $productId,
             ]);
         }
     }
 
-    public function supplier(){
+    public function supplier()
+    {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
-
-
-
-
 }
