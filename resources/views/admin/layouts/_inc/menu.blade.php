@@ -195,7 +195,13 @@
 
             <ul id="purchase" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('purchases.index') }}">Manage Purchase</a>
+                    <a class="side-nav-menu-link" href="{{ route('purchases.index') }}">All Purchase</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchases.pending') }}">Pending Purchase</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchases.approved') }}">Approved Purchase</a>
                 </li>
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('purchases.create') }}">Purchase New </a>
@@ -203,6 +209,37 @@
             </ul>
         </li>
         <!-- End Purchase Products  -->
+
+        <!-- invoice Products  -->
+        <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#"
+               data-target="#invoice">
+              <span class="side-nav-menu-icon d-flex mr-3">
+                <i class="gd-money"></i>
+              </span>
+                <span class="side-nav-fadeout-on-closed media-body">Invoice Products</span>
+                <span class="side-nav-control-icon d-flex">
+            <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+          </span>
+                <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+
+            <ul id="invoice" class="side-nav-menu side-nav-menu-second-level mb-0">
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('invoice.index') }}">All Invoice</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchases.pending') }}">Pending Purchase</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchases.approved') }}">Approved Purchase</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('invoice.create') }}">New Invoice</a>
+                </li>
+            </ul>
+        </li>
+        <!-- End invoice Products  -->
 
 
     </ul>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Purchase Products
+Purchase Pending list
 @endsection
 @section('content')
     <div class="py-4 px-3 px-md-4">
@@ -13,7 +13,7 @@ Purchase Products
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="float-left">All Purchase</h4>
+                        <h4 class="float-left">Approved Purchase</h4>
                         <a href="{{ route('purchases.create') }}" class="btn btn-info float-right">Purchase New</a>
                     </div>
                     <div class="card-body">
@@ -51,9 +51,9 @@ Purchase Products
                                     <td><span class="badge badge-pill badge-{{ $purchase->status == 1 ? 'success' : 'warning' }}">{{ $purchase->status == 1 ? 'success' : 'pending' }}</span></td>
                                     <td>
                                         @if ($purchase->status != 1)
-                                        <a title="Approve Purchase" onclick="return confirm('Are sure want to approve this ?')" href="{{ route('purchase.status', ['id'=>$purchase->id]) }}" class="btn btn-info"><i class="gd-check-box"></i></a>
+                                        <a title="Approve Purchase" href="{{ route('products.status', ['id'=>$purchase->id]) }}" class="btn btn-info"><i class="gd-check-box"></i></a>
                                         @else
-                                        <a title="See Purchase Details" href="#" class="btn btn-success"><i class="gd-info-alt"></i></a>
+                                        <a title="See Purchase Details" href="" class="btn btn-success"><i class="gd-info-alt"></i></a>
                                         @endif
                                         @if ($purchase->status != 1)
                                         <form action="{{ route('purchases.destroy', $purchase->id) }}" method="POST" onsubmit="return confirm('Are sure want to delete this ?')" style="display: inline-block">
@@ -72,8 +72,5 @@ Purchase Products
                 </div>
             </div>
         </div>
-
-
-
     </div>
 @endsection

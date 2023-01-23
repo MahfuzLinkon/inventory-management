@@ -34,10 +34,10 @@
     </script>
     {{ Session::forget('success') }}
 @endif
-@if (Session::has('erros'))
+@if (Session::has('error'))
     <script>
-        toastr.erros("{{ Session::get('erros') }}");
+        toastr.error("{{ Session::get('error') }}");
     </script>
-    {{ Session::forget('erros') }}
+    {{ Session::forget('error') }}
 @endif
 @yield('script')

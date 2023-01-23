@@ -13,19 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id');
-            $table->bigInteger('unit_id');
-            $table->string('name');
-            $table->integer('quantity')->default(0);
-            $table->text('image')->nullable();
+            $table->bigInteger('invoice_no');
+            $table->date('date');
             $table->text('description')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->integer('grand_total')->nullable();
+            $table->tinyInteger('status')->default(0)->comment('1=>approved; 0=>Pending');
             $table->tinyInteger('created_by')->nullable();
-            $table->tinyInteger('updated_by')->nullable();
+            $table->tinyInteger('approve_by')->nullable();
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('invoices');
     }
 };

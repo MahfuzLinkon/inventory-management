@@ -24,6 +24,7 @@
                                     <th>Name</th>
                                     <th>Supplier</th>
                                     <th>Catgory</th>
+                                    <th>Quantity</th>
                                     <th>Unit</th>
                                     <th>Description</th>
                                     <th>Image</th>
@@ -54,6 +55,7 @@
                                         @endphp --}}
                                     </td>
                                     <td>{{ $product->category->name }}</td>
+                                    <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->unit->name }}</td>
                                     <td>{!! Str::words($product->description, 20, '...') !!}</td>
                                     <td>

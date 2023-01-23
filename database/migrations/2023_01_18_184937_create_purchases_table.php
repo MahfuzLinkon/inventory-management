@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('supplier_id');
             $table->bigInteger('category_id');
             $table->bigInteger('product_id');
-            $table->string('purchase_no');
+            $table->string('purchase_no')->default(0);
             $table->date('date');
             $table->text('description')->nullable();
             $table->double('quantity', 10, 2)->default(0);

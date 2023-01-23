@@ -14,7 +14,7 @@ Purchase Product
                 <div class="card">
                     <div class="card-header">
                         <h4 class="float-left">Purchase Products</h4>
-                        <a href="{{ route('products.index') }}" class="btn btn-info float-right">Manage Purchase</a>
+                        <a href="{{ route('purchases.index') }}" class="btn btn-info float-right">Manage Purchase</a>
                     </div>
                     <div class="card-body">
 
@@ -79,7 +79,8 @@ Purchase Product
                     </div>
                     <div class="card-body">
                         <h4 class="card-title p-3" style="border: 1px solid #ddd">Product Purchase List</h4>
-                        <form action="" onsubmit="return confirm('Are you sure ?')">
+                        <form action="{{ route('purchases.store') }}" method="POST" onsubmit="return confirm('Are you sure ?')">
+                            @csrf
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
@@ -100,7 +101,7 @@ Purchase Product
                                     <tr>
                                         <td colspan="5"></td>
                                         <th>Total Amount : </th>
-                                        <td><input type="text" class="form-control" id="estimatedAmount" style="background-color: #ddd" name="estimatedAmount" readonly value="0"></td>
+                                        <td><input type="text" class="form-control" id="estimatedAmount" style="background-color: #ddd" name="" readonly value="0"></td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -185,6 +186,7 @@ Purchase Product
             }
             let html = template(data);
             $('#addRow').append(html);
+            resetForm();
         });
 
         // remove product from list
@@ -218,15 +220,6 @@ Purchase Product
 </script>
 
 
-
-
-
-
-
-
-
-
-
 <script>
     $.ajaxSetup({
         headers: {
@@ -234,7 +227,10 @@ Purchase Product
         }
     });
     //Supplier wise Category
-    $(document).on('change', '#supplierId', function(){
+
+
+    function supplierCategory(){
+            $(document).on('change', '#supplierId', function(){
 
         let supplierId = $(this).val();
         // alert(supplierId);
@@ -256,6 +252,8 @@ Purchase Product
             }
         });
     });
+    }
+    supplierCategory();
     // Category wise product
     $(document).on('change', '#categoryId', function(){
         let categoryId = $(this).val();
@@ -278,6 +276,11 @@ Purchase Product
     });
     function resetOption(){
         $('#productId').empty();
+    }
+    function resetForm(){
+        $('#productId').empty('');
+        $('#categoryId').empty();
+        supplierCategory();
     }
 </script>
 @endsection

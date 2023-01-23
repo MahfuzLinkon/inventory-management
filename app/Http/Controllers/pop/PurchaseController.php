@@ -8,6 +8,7 @@ use App\Models\ProductSupplier;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
@@ -21,6 +22,19 @@ class PurchaseController extends Controller
     {
         return view('pop.purchase.index', [
             'purchases' => Purchase::latest()->get(),
+        ]);
+    }
+
+    public function purchasePending()
+    {
+        return view('pop.purchase.pending', [
+            'purchases' => Purchase::whereNotIn('status', [1])->get(),
+        ]);
+    }
+    public function purchaseApproved()
+    {
+        return view('pop.purchase.approved', [
+            'purchases' => Purchase::where('status', [1])->get(),
         ]);
     }
 
@@ -70,7 +84,13 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->product_id == null) {
+            return redirect()->back()->with('error', 'Please select product first !');
+        } else {
+            // return $request->all();
+            Purchase::createPurchase($request);
+            return redirect()->back()->with('success', 'Product successfully purchased !');
+        }
     }
 
     /**
@@ -115,6 +135,26 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $purchase = Purchase::where('id', $id)->first();
+        if ($purchase->status == 0) {
+            $purchase->delete();
+            return redirect()->back()->with('success', 'Item Deleted Successfully');
+        } else {
+            return redirect()->back()->with('error', "Item Can't Be Delete !");
+        }
+    }
+
+    public function purchaseStatus($id)
+    {
+        $purchase = Purchase::where('id', $id)->first();
+        $purchase->status = 1;
+        $purchase->approve_by = Auth::user()->id;
+        $purchase->save();
+
+        $product = Product::where('id', $purchase->product_id)->first();
+        $product->quantity += $purchase->quantity;
+        $product->save();
+
+        return redirect()->back()->with('success', 'Purchase Approved Successfully !');
     }
 }
