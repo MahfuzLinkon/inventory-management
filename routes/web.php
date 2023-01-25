@@ -55,6 +55,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/create', [InvoiceController::class, 'create'])->name('invoice.create');
     Route::post('/get-product/quantity', [InvoiceController::class, 'getProductQuantity'])->name('get-product.quantity');
+    Route::post('/invoice/store', [InvoiceController::class, 'store'])->name('invoice.store');
+    Route::get('/invoice/pending', [InvoiceController::class, 'invoicePending'])->name('invoice.pending');
+    Route::delete('/invoice/destroy/{id}', [InvoiceController::class, 'invoiceDestroy'])->name('invoice.destroy');
+    Route::get('/invoice/details/{id}', [InvoiceController::class, 'invoiceDetails'])->name('invoice.details');
+    Route::post('/invoice/approve/{id}', [InvoiceController::class, 'invoiceApprove'])->name('invoice.approve');
 });
 
 

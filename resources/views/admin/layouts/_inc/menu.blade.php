@@ -229,10 +229,7 @@
                     <a class="side-nav-menu-link" href="{{ route('invoice.index') }}">All Invoice</a>
                 </li>
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('purchases.pending') }}">Pending Purchase</a>
-                </li>
-                <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('purchases.approved') }}">Approved Purchase</a>
+                    <a class="side-nav-menu-link" href="{{ route('invoice.pending') }}">Pending Invoice</a>
                 </li>
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('invoice.create') }}">New Invoice</a>

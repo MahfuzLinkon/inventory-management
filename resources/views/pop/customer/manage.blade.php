@@ -43,7 +43,7 @@
                                         <img src="{{ asset($customer->image) }}" alt="" style="height: 80px; width:80px;">
                                     </td>
                                     <td>{{ $customer->description }}</td>
-                                    <td>{{ $customer->createdBy->name }}</td>
+                                    <td>{{ isset($customer->createdBy->name) ? $customer->createdBy->name : 'Null' }}</td>
                                     <td>{{ isset($customer->updatedBy) ? $customer->updatedBy->name : 'Not Updated' }}</td>
                                     <td>{{ $customer->status == 1 ? 'Active' : 'Deactive' }}</td>
                                     <td>

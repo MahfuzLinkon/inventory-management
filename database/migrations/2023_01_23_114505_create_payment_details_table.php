@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('payment_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('invoice_no');
-            $table->date('date');
-            $table->text('description')->nullable();
-            $table->tinyInteger('status')->default(0)->comment('1=>approved; 0=>Pending');
-            $table->tinyInteger('created_by')->nullable();
-            $table->tinyInteger('approve_by')->nullable();
+            $table->bigInteger('invoice_id');
+            $table->double('current_paid_amount')->default(0);
+            $table->date('date')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('payment_details');
     }
 };

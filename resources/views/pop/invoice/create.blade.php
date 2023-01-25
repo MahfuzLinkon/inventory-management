@@ -60,12 +60,12 @@ Purchase Product
                             </div>
 
                             <div class="mt-3 float-right">
-                                <button id="purchaseProduct" class="btn btn-sm btn-secondary">Add More <span class="ml-2"><i class="gd-plus"></i></span></button>
+                                <button id="addMore" class="btn btn-sm btn-secondary">Add More <span class="ml-2"><i class="gd-plus"></i></span></button>
                             </div>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title p-3" style="border: 1px solid #ddd">Product Purchase List</h4>
-                        <form action="{{ route('purchases.store') }}" method="POST" onsubmit="return confirm('Are you sure ?')">
+                        <h4 class="card-title p-3" style="border: 1px solid #ddd">Product Invoice List</h4>
+                        <form action="{{ route('invoice.store') }}" method="POST" onsubmit="return confirm('Are you sure ?')">
                             @csrf
                             <table class="table table-sm table-bordered ">
                                 <thead>
@@ -105,7 +105,7 @@ Purchase Product
                                     <div class="col-md-5">
                                         <div>
                                             <label for="">Payment Status</label>
-                                            <select name="paymet_status" id="paymetStatus" class="form-control">
+                                            <select name="paid_status" id="paymetStatus" class="form-control">
                                                 <option selected disabled>Select Payment status</option>
                                                 <option value="2">Partial Payment</option>
                                                 <option value="1">Full Paid</option>
@@ -114,7 +114,7 @@ Purchase Product
                                         </div>
                                         <div class="mt-3" id="paymentAmount" style="display: none">
                                             <label for="">Payment Amount</label>
-                                            <input type="number" name="payment_amount" class="form-control" >
+                                            <input type="number" name="paid_amount" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="col-md-7">
@@ -146,7 +146,7 @@ Purchase Product
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" id="confirmPurchase" class="mt-3 btn btn-primary float-right">Confirm</button>
+                            <button type="submit" id="confirmInvoice" class="mt-3 btn btn-primary float-right">Confirm</button>
                         </form>
                     </div>
                 </div>
@@ -160,9 +160,9 @@ Purchase Product
 
 <script id="item-template" type="text/x-handlebars-template">
     <tr id="addOrDeleteItem">
-        <input type="hidden" name="date" value="@{{ date }}">
+        <input type="hidden" id="date" name="date" value="@{{ date }}">
         <td>
-            <input type="hidden" name="product_id[]" value="@{{ productId }}">
+            <input type="hidden" id="productId" name="product_id[]" value="@{{ productId }}">
             @{{ productName }}
         </td>
         <td>
@@ -186,7 +186,7 @@ Purchase Product
 
 <script>
     $(document).ready(function(){
-        $(document).on('click', '#purchaseProduct', function(){
+        $(document).on('click', '#addMore', function(){
             let date = $('#date').val();
             let categoryId = $('#categoryId').val();
             let categoryName = $('#categoryId').find('option:selected').text();
