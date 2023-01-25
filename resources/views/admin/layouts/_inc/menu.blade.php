@@ -201,9 +201,6 @@
                     <a class="side-nav-menu-link" href="{{ route('purchases.pending') }}">Pending Purchase</a>
                 </li>
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('purchases.approved') }}">Approved Purchase</a>
-                </li>
-                <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('purchases.create') }}">Purchase New </a>
                 </li>
             </ul>

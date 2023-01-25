@@ -31,12 +31,7 @@ class PurchaseController extends Controller
             'purchases' => Purchase::whereNotIn('status', [1])->get(),
         ]);
     }
-    public function purchaseApproved()
-    {
-        return view('pop.purchase.approved', [
-            'purchases' => Purchase::where('status', [1])->get(),
-        ]);
-    }
+    
 
     /**
      * Show the form for creating a new resource.

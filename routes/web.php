@@ -49,7 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/get-supplier-wise/category', [PurchaseController::class, 'getCategory'])->name('get.category');
     Route::post('/get-category-wise/product', [PurchaseController::class, 'getProduct'])->name('get.product');
     Route::get('/purchase/pending', [PurchaseController::class, 'purchasePending'])->name('purchases.pending');
-    Route::get('/purchase/approved', [PurchaseController::class, 'purchaseApproved'])->name('purchases.approved');
+    // Route::get('/purchase/approved', [PurchaseController::class, 'purchaseApproved'])->name('purchases.approved');
     Route::get('/purchase/status/{id}', [PurchaseController::class, 'purchaseStatus'])->name('purchase.status');
     //invoice all route
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
