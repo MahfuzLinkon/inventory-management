@@ -6,16 +6,13 @@ Approve invoice details
 <div class="py-4 px-3 px-md-4">
 
     <div class="mb-3 mb-md-4 d-flex justify-content-between">
-        <div class="h3 mb-0">Invoice</div>
+        <h4 class="float-left">Invoice Details</h4>
+        <a href="{{ route('invoice.pending') }}" class="btn btn-info float-right">Panding Invoice</a>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="float-left">Invoice Details</h4>
-                    <a href="{{ route('invoice.pending') }}" class="btn btn-info float-right">Panding Invoice</a>
-                </div>
                 <div class="card-body">
                     <h4>Invoice No: #{{ str_pad($invoice->invoice_no, 10, '0', STR_PAD_LEFT) }}</h4>
                     <h5>Date: {{ date('d-m-Y', strtotime($invoice->date)) }}</h5>
@@ -23,15 +20,17 @@ Approve invoice details
                 <div class="card-body">
                     <h5>Cutomer Info:</h5>
                     <div class="row">
-                        <div class="col-md-1">
-                            <p><strong>Name: </strong></p>
-                            <p><strong>Phone: </strong></p>
-                            <p><strong>Email: </strong></p>
-                        </div>
-                        <div class="col-md-10">
-                            <p>{{ $invoice->payment->customer->name }}</p>
-                            <p>{{ $invoice->payment->customer->phone }}</p>
-                            <p>{{ $invoice->payment->customer->email }}</p>
+                        <div class="col-md-12">
+                            <div class="float-left">
+                                <p><strong>Name: </strong></p>
+                                <p><strong>Phone: </strong></p>
+                                <p><strong>Email: </strong></p>
+                            </div>
+                            <div class="float-left ml-3">
+                                <p>{{ $invoice->payment->customer->name }}</p>
+                                <p>{{ $invoice->payment->customer->phone }}</p>
+                                <p>{{ $invoice->payment->customer->email }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,13 +82,28 @@ Approve invoice details
                                 </tr>
                                 <tr>
                                     <th colspan="{{ $invoice->status !=1 ? '5' : '4'}}">Grand Total</th>
-                                    <td>{{ $invoice->payment->total_amount }}</td>
+                                    <td><strong>{{ $invoice->payment->total_amount }}</strong></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="{{ $invoice->status !=1 ? '5' : '4'}}">Paid Amount</th>
+                                    <td>{{ $invoice->payment->paid_amount }}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="{{ $invoice->status !=1 ? '5' : '4'}}">Due Amount</th>
+                                    <td><strong>{{ $invoice->payment->due_amount }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                         @if ($invoice->status !=1 )
                         <div class="mt-5 mb-5">
                             <button class="btn btn-info float-right">Approve Invoice</button>
+                        </div>
+
+                        @endif
+                        @if ($invoice->status ==1 )
+                        <div class="mt-5 mb-5 float-right">
+                            <button title="Print Invoice" type="button" class="mr-2 btn btn-success" onclick="window.print()"><i class="gd-printer"></i></button>
+                            <button title="Download Invoice" class="btn btn-info "><i class="gd-download"></i></button>
                         </div>
                         @endif
                     </form>
