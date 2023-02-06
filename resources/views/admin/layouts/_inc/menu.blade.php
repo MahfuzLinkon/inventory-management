@@ -73,7 +73,7 @@
         </li>
         <!-- End Supplier -->
 
-        <!-- Supplier -->
+        <!-- Customer -->
         <li class="side-nav-menu-item side-nav-has-menu">
             <a class="side-nav-menu-link media align-items-center" href="#"
                data-target="#customers">
@@ -93,12 +93,18 @@
                     <a class="side-nav-menu-link" href="{{ route('customers.index') }}">All Customers</a>
                 </li>
                 <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('customer.paid') }}">Paid Customers</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('customer.credit') }}">Credit Customers</a>
+                </li>
+                <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('customers.create') }}">Add New Customers</a>
                 </li>
             </ul>
             <!-- End Pages: subPages -->
         </li>
-        <!-- End Supplier -->
+        <!-- End Customer -->
 
         <!-- Units -->
         <li class="side-nav-menu-item side-nav-has-menu">
@@ -203,6 +209,9 @@
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('purchases.create') }}">Purchase New </a>
                 </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('purchase.report') }}">Purchase Report </a>
+                </li>
             </ul>
         </li>
         <!-- End Purchase Products  -->
@@ -214,7 +223,7 @@
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="gd-money"></i>
               </span>
-                <span class="side-nav-fadeout-on-closed media-body">Invoice Products</span>
+                <span class="side-nav-fadeout-on-closed media-body">Invoice</span>
                 <span class="side-nav-control-icon d-flex">
             <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
           </span>
@@ -223,17 +232,46 @@
 
             <ul id="invoice" class="side-nav-menu side-nav-menu-second-level mb-0">
                 <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('invoice.create') }}">Create Invoice</a>
+                </li>
+                <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('invoice.index') }}">All Invoice</a>
                 </li>
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="{{ route('invoice.pending') }}">Pending Invoice</a>
                 </li>
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="{{ route('invoice.create') }}">New Invoice</a>
+                    <a class="side-nav-menu-link" href="{{ route('invoice.daily') }}">Daily Invoice</a>
                 </li>
             </ul>
         </li>
         <!-- End invoice Products  -->
+
+         <!-- Manage stock  -->
+         <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#"
+               data-target="#stock">
+              <span class="side-nav-menu-icon d-flex mr-3">
+                <i class="gd-bar-chart"></i>
+              </span>
+                <span class="side-nav-fadeout-on-closed media-body">Stock</span>
+                <span class="side-nav-control-icon d-flex">
+            <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+          </span>
+                <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+
+            <ul id="stock" class="side-nav-menu side-nav-menu-second-level mb-0">
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('manage.stock') }}">Manage Stock</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="{{ route('search.stock') }}">Search Stock</a>
+                </li>
+
+            </ul>
+        </li>
+        <!--  Manage stock  -->
 
 
     </ul>

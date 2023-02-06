@@ -8,6 +8,7 @@ use App\Http\Controllers\pop\CustomerController;
 use App\Http\Controllers\pop\InvoiceController;
 use App\Http\Controllers\pop\ProductController;
 use App\Http\Controllers\pop\PurchaseController;
+use App\Http\Controllers\pop\StockController;
 use App\Http\Controllers\pop\UnitController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('customers', CustomerController::class)->except(['store', 'update']);
     Route::post('/customers/update-insert/{id?}', [CustomerController::class, 'updateOrInsert'])->name('customers.update-insert');
     Route::get('/customers/status/{id}', [CustomerController::class, 'customerStatus'])->name('customers.status');
+    Route::get('/customer/credit', [CustomerController::class, 'customerCredit'])->name('customer.credit');
+    Route::get('/customer/paid', [CustomerController::class, 'customerPaid'])->name('customer.paid');
+    Route::get('/customer/credit/pdf', [CustomerController::class, 'customerCreditPdf'])->name('customer.credit-pdf');
+    Route::get('/customer/payment/{invoice_id}', [CustomerController::class, 'customerPayment'])->name('customer.payment');
+    Route::post('/customer/payment/store/{invoice_id}', [CustomerController::class, 'customerPaymentStore'])->name('customer.payment-store');
+    Route::get('/customer/payment/summary/{invoice_id}', [CustomerController::class, 'customerPaymentSummary'])->name('customer.payment-summary');
+
+
+
     // Units all route
     Route::resource('units', UnitController::class);
     Route::get('/units/status/{id}', [UnitController::class, 'unitsStatus'])->name('units.status');
@@ -51,6 +61,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/purchase/pending', [PurchaseController::class, 'purchasePending'])->name('purchases.pending');
     // Route::get('/purchase/approved', [PurchaseController::class, 'purchaseApproved'])->name('purchases.approved');
     Route::get('/purchase/status/{id}', [PurchaseController::class, 'purchaseStatus'])->name('purchase.status');
+    Route::get('/purchase/report', [PurchaseController::class, 'purchaseReport'])->name('purchase.report');
+    Route::get('/purchase/report-generate', [PurchaseController::class, 'purchaseReportGenerate'])->name('purchase.report-generate');
     //invoice all route
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/create', [InvoiceController::class, 'create'])->name('invoice.create');
@@ -60,6 +72,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/invoice/destroy/{id}', [InvoiceController::class, 'invoiceDestroy'])->name('invoice.destroy');
     Route::get('/invoice/details/{id}', [InvoiceController::class, 'invoiceDetails'])->name('invoice.details');
     Route::post('/invoice/approve/{id}', [InvoiceController::class, 'invoiceApprove'])->name('invoice.approve');
+    Route::get('/invoice/daily', [InvoiceController::class, 'invoiceDaily'])->name('invoice.daily');
+    Route::post('/invoice/daily-search', [InvoiceController::class, 'invoiceDailySearch'])->name('invoice.daily-search');
+    // Manage stock
+    Route::get('/manage/stock', [StockController::class, 'manageStock'])->name('manage.stock');
+    Route::get('/search/stock', [StockController::class, 'searchStock'])->name('search.stock');
+    Route::get('/search/stock-supplier', [StockController::class, 'searchStockSupplier'])->name('search.stock-supplier');
+    Route::get('/search/get-product-id', [StockController::class, 'getSearchProduct'])->name('search.get-product');
+    Route::get('/search/stock-product', [StockController::class, 'searchStockProduct'])->name('search.stock-product');
 });
 
 

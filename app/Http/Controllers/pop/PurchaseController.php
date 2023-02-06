@@ -31,7 +31,7 @@ class PurchaseController extends Controller
             'purchases' => Purchase::whereNotIn('status', [1])->get(),
         ]);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -151,5 +151,22 @@ class PurchaseController extends Controller
         $product->save();
 
         return redirect()->back()->with('success', 'Purchase Approved Successfully !');
+    }
+
+    public function purchaseReport()
+    {
+        return view('pop.purchase.report');
+    }
+
+    public function purchaseReportGenerate(Request $request)
+    {
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        return view('pop.pdf.purchase-report', [
+            'purchases' => Purchase::WhereBetween('date', [$startDate, $endDate])->where('status', 1)->orderBy('id', 'DESC')->get(),
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+        ]);
     }
 }

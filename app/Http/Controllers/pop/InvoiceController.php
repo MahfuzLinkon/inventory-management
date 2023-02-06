@@ -164,4 +164,25 @@ class InvoiceController extends Controller
         });
         return redirect()->back()->with('success', 'Invoice approved successfully !');
     }
+
+    public function invoiceDaily()
+    {
+        return view('pop.invoice.daily-invoice');
+    }
+
+    public function invoiceDailySearch(Request $request)
+    {
+        $this->validate($request, [
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+        // return $request->all();
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+        return view('pop.pdf.daily-invoice', [
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'invoices' => Invoice::whereBetween('date', [$startDate, $endDate])->where('status', 1)->get(),
+        ]);
+    }
 }

@@ -96,7 +96,7 @@ Approve invoice details
                         </table>
                         @if ($invoice->status !=1 )
                         <div class="mt-5 mb-5">
-                            <button class="btn btn-info float-right">Approve Invoice</button>
+                            <button type="submit" class="btn btn-info float-right">Approve Invoice</button>
                         </div>
 
                         @endif

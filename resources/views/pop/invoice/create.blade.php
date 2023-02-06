@@ -29,7 +29,7 @@ Purchase Product
                                 <div class="col-md-3">
                                     <label for="">Category Name</label>
                                     <div>
-                                        <select name="category_id" id="categoryId" class="selectJs form-control" data-placeholder="Select Product Supplier">
+                                        <select name="category_id" id="categoryId" class="selectJs form-control" data-placeholder="Select Product Category">
                                             <option></option>
                                             @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -55,7 +55,7 @@ Purchase Product
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Stock</label>
-                                    <input type="number" name="stock" id="stock" class="form-control" readonly>
+                                    <input type="number" name="stock" id="stockQuantity" class="form-control" readonly>
                                 </div>
                             </div>
 
@@ -296,7 +296,7 @@ Purchase Product
             dataTypr: "JSON",
             data: {category_id: categoryId},
             success: function(response){
-                console.log(response);
+                // console.log(response);
                 let option = ""
                 option += '<option selected disabled >--Select product name--</option>'
                 $.each(response, function(key, value){
@@ -317,9 +317,8 @@ Purchase Product
             dataTypr: "JSON",
             data: {product_id: productId},
             success: function(response){
-                // console.log(response.name);
-                $('#stock').val(response.quantity)
-
+                // console.log(response.quantity);
+                $('#stockQuantity').val(response.quantity);
             }
         });
     });

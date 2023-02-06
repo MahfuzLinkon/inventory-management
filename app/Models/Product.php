@@ -24,12 +24,13 @@ class Product extends Model
         'updated_at',
     ];
 
-    public static function productUpdateOrCreate($request, $id = null){
-        $product = Product::updateOrCreate(['id'=>$id], [
+    public static function productUpdateOrCreate($request, $id = null)
+    {
+        $product = Product::updateOrCreate(['id' => $id], [
             'unit_id' => $request->unit_id,
             'category_id' => $request->category_id,
             'name' => $request->name,
-            'image' => Helper::imageUploader($request->image, 'products', isset($id) ? Product::find($id)->image : null , 600, 600),
+            'image' => Helper::imageUploader($request->image, 'products', isset($id) ? Product::find($id)->image : null, 600, 600),
             'description' => $request->description,
             'created_by' => empty($id) ? Auth::user()->id : Product::find($id)->created_by,
             'updated_by' => isset($id) ? Auth::user()->id : null,
@@ -40,16 +41,22 @@ class Product extends Model
     }
 
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
-    public function unit(){
+    public function unit()
+    {
         return $this->belongsTo(Unit::class);
     }
 
-    // public function productSupplier(){
-    //     return $this->belongsTo(ProductSupplier::class, 'product_id', 'id');
-    // }
+    public function product_supplier()
+    {
+        return $this->hasMany(ProductSupplier::class, 'product_id', 'id');
+    }
 
-
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }
