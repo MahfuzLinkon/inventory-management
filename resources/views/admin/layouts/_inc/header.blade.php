@@ -8,9 +8,10 @@
             <!-- End Logo For Mobile View -->
 
             <!-- Logo For Desktop View -->
-            <a class="navbar-brand navbar-brand-desktop" href="/">
-                <img class="side-nav-show-on-closed" src="{{ asset('/') }}assets/public/img/logo-mini.png" alt="Graindashboard" style="width: auto; height: 33px;">
-                <img class="side-nav-hide-on-closed" src="{{ asset('/') }}assets/public/img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;">
+            <a class="navbar-brand navbar-brand-desktop" href="{{ route('dashboard') }}">
+                {{-- <img class="side-nav-show-on-closed" src="{{ asset('/') }}assets/public/img/logo-mini.png" alt="Graindashboard" style="width: auto; height: 33px;">
+                <img class="side-nav-hide-on-closed" src="{{ asset('/') }}assets/public/img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;"> --}}
+                <span class="side-nav-hide-on-closed" style="width: auto; height: 33px;">Inventory</span>
             </a>
             <!-- End Logo For Desktop View -->
         </div>
@@ -75,7 +76,7 @@
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
                         <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">John Doe</span>
+                        <span class="d-none d-md-block">{{ Auth::user()->name }}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
 
